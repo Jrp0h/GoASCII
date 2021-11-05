@@ -1,7 +1,7 @@
 package main
 
 import (
-	"color"
+	"image/color"
 	"image"
 	_ "image/jpeg"
 	_ "image/png"
