@@ -22,6 +22,6 @@ func getCharacterFromColor(pixel color.Color) string {
     averageRGBValue := (r + g + b) / 3
 
     //divide averageRBGValue so that it corresponds to the index of the character array
-    //and return the character at that index
+    //and return the character at that index (16 bit per channel 0-65534)
     return characters[averageRGBValue/6554]
 }
