@@ -1,19 +1,27 @@
-package main
+package characters
 
 import (
 	"fmt"
 	"image/color"
+	"os"
+	"os/exec"
+	"runtime"
 )
 
 var characters = [32]string{"'", "¨", ".", "-", "~", "^", "+", "=", "*", "<", "c", "!", "/", "¤", "#", "x", "e", "d", "?", "2", "L", "E", "{", "€", "£", "X", "&", "§", "%", "M", "$", "@"}
 
-func PrintCharacters(pixels [][]color.Color) {
+func Print(pixels [][]color.Color) {
+	printString := ""
+
 	for _, row := range pixels {
 		for _, pixel := range row {
-			fmt.Print(getCharacterFromColor(pixel))
+			printString += getCharacterFromColor(pixel)
 		}
-		fmt.Print("\n")
+		printString += "\n"
 	}
+
+	clearScreen()
+	fmt.Print(printString)
 }
 
 func getCharacterFromColor(pixel color.Color) string {
@@ -25,3 +33,14 @@ func getCharacterFromColor(pixel color.Color) string {
 	return characters[averageRGBValue/2048]
 }
 
+func clearScreen() {
+	if runtime.GOOS == "windows" {
+		cmd := exec.Command("cmd", "/c", "cls")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+	} else {
+		cmd := exec.Command("clear")
+		cmd.Stdout = os.Stdout
+		cmd.Run()
+	}
+}
