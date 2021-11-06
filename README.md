@@ -5,6 +5,8 @@ It even animates gifs in the terminal!
 
 # How to use
 
+Download the Go programming language from https://golang.org/
+
 To load an image just open a terminal in the directory with the main.go file, move the image file to this directory and then just run `go run . imageName.extension`
 It works with gifs, pngs and jpegs.
 
