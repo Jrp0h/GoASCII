@@ -10,18 +10,27 @@ import (
 
 var characters = [32]string{"'", "¨", ".", "-", "~", "^", "+", "=", "*", "<", "c", "!", "/", "¤", "#", "x", "e", "d", "?", "2", "L", "E", "{", "€", "£", "X", "&", "§", "%", "M", "$", "@"}
 
-func Print(pixels [][]color.Color) {
-	printString := ""
+type PrintFrame struct {
+	Text string
+}
+
+func PreRenderFrame(pixels [][]color.Color) *PrintFrame {
+	printFrame := PrintFrame{Text: ""}
 
 	for _, row := range pixels {
 		for _, pixel := range row {
-			printString += getCharacterFromColor(pixel)
+			printFrame.Text += getCharacterFromColor(pixel)
 		}
-		printString += "\n"
+		printFrame.Text += "\n"
 	}
 
+	return &printFrame
+
+}
+
+func Print(frame *PrintFrame) {
 	clearScreen()
-	fmt.Print(printString)
+	fmt.Print(frame.Text)
 }
 
 func getCharacterFromColor(pixel color.Color) string {

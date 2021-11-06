@@ -27,16 +27,16 @@ func Play(filename string) {
 }
 
 func playGIF(gif _gif.GIF) {
-	var pixelizedImages []*frame
+	var printFrames []*characters.PrintFrame
 
 	for _, img := range gif.Image {
 		imgFrame := getFrameGIF(*img)
-		pixelizedImages = append(pixelizedImages, imgFrame)
+		printFrames = append(printFrames, characters.PreRenderFrame(imgFrame.Pixels))
 	}
 
 	for {
-		for _, frame := range pixelizedImages {
-			characters.Print(frame.Pixels)
+		for _, frame := range printFrames {
+			characters.Print(frame)
 			//just time between frames, about 15 fps
 			time.Sleep(67 * time.Millisecond)
 		}
@@ -47,5 +47,6 @@ func playGIF(gif _gif.GIF) {
 func renderImage(img image.Image) {
 
 	frame := getFrameImage(img)
-	characters.Print(frame.Pixels)
+	printFrame := characters.PreRenderFrame(frame.Pixels)
+	characters.Print(printFrame)
 }
