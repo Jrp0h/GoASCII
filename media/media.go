@@ -12,7 +12,7 @@ import (
 	"os"
 )
 
-func GetFileFormat(file *os.File) string {
+func getFileFormat(file *os.File) string {
 	//Thanks stackoverflow lookalike website
 	buffer := make([]byte, 512)
 
@@ -27,7 +27,7 @@ func GetFileFormat(file *os.File) string {
 	return contentType
 }
 
-func LoadFile(filename string) *os.File {
+func loadFile(filename string) *os.File {
 
 	file, openError := os.Open(filename)
 

@@ -11,8 +11,8 @@ import (
 
 func Play(filename string) {
 
-	file := LoadFile(filename)
-	format := GetFileFormat(file)
+	file := loadFile(filename)
+	format := getFileFormat(file)
 
 	switch format {
 	case "image/png", "image/jpeg":
