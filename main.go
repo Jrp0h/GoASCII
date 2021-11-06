@@ -7,12 +7,11 @@ import (
 )
 
 func main() {
-	//Had to make it one line, just because I could :D
-	filename := os.Args[1]
-
-	if len(filename) == 0 {
+	if len(os.Args) < 2 {
 		log.Fatal("No filename was specified")
 	}
 
+	//Had to make it one line, just because I could :D
+	filename := os.Args[1]
 	media.Play(filename)
 }
